@@ -1,4 +1,6 @@
-import { getFirstChild, getParent, swap } from './HeapUtils';
+import {
+  getFirstChild, getParent, swap, getN,
+} from './HeapUtils';
 
 class MinHeap {
   constructor(array) {
@@ -7,7 +9,7 @@ class MinHeap {
 
   buildHeap(array) {
     const { siftDown } = this;
-    const n = array.length - 1;
+    const n = getN(array);
     const parent = getParent(n);
     for (let i = parent; i >= 0; i--) {
       siftDown(i, array);
@@ -17,7 +19,7 @@ class MinHeap {
 
   getTarget(l, arr) {
     let tgt = l;
-    const n = arr.length - 1;
+    const n = getN(arr);
     const r = l < n ? l + 1 : -1;
     if (r > -1 && arr[r] < arr[l]) {
       tgt = r;
@@ -26,7 +28,7 @@ class MinHeap {
   }
 
   siftDown(i, arr) {
-    const n = arr.length - 1;
+    const n = getN(arr);
     let l = getFirstChild(i);
     while (l <= n) {
       const tgt = this.getTarget(l, arr);
@@ -57,7 +59,7 @@ class MinHeap {
 
   remove() {
     const { heap, siftDown } = this;
-    const n = heap.length - 1;
+    const n = getN(heap);
     swap(0, n, heap);
     const removed = heap.pop();
     siftDown(0, heap);
@@ -67,8 +69,12 @@ class MinHeap {
   insert(value) {
     const { heap, siftUp } = this;
     heap.push(value);
-    const n = heap.length - 1;
+    const n = getN(heap);
     siftUp(n, heap);
+  }
+
+  getLength() {
+    return this.heap.length;
   }
 }
 
