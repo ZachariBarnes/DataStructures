@@ -1,0 +1,37 @@
+{
+  "name": "datastructures",
+  "version": "1.0.0",
+  "description": "A collection of datastructures and utilities to be exported for use in other packages.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZachariBarnes/DataStructures.git"
+  },
+  "keywords": [
+    "heap",
+    "Binary",
+    "Tree",
+    "Graph",
+    "sort",
+    "search"
+  ],
+  "author": "Zachari Barnes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ZachariBarnes/DataStructures/issues"
+  },
+  "homepage": "https://github.com/ZachariBarnes/DataStructures#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^7.15.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.2.0"
+  }
+}
