@@ -1,4 +1,6 @@
-import { getFirstChild, getParent, swap, getN } from './HeapUtils';
+import {
+  getFirstChild, getParent, swap, getN,
+} from './HeapUtils';
 
 class MaxHeap {
   constructor(array) {
