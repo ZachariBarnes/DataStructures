@@ -33,6 +33,19 @@ export function traverse(node, result = []) {
   return result;
 }
 
+export function swapNodesAt(k, node) {
+  if (node === null || node.value === -1) return;
+  if (node.depth % k === 0) {
+    // console.log(`Swapping nodes at Depth: ${node.depth} for K: ${k}`);
+    const temp = node.left;
+    node.left = node.right;
+    node.right = temp;
+  }
+  // console.log(`NOT Swapping nodes at Depth: ${node.depth} for K: ${k}`);
+  swapNodesAt(k, node.left);
+  swapNodesAt(k, node.right);
+}
+
 // Takes a two  dimensional array of integers. -1 signifies and empty node.
 // Example: [ [2,3] [-1,-1], [-1,-1] ] Creates the tree 2 1 3 with 1 being the root node and 2 and 3 being leaf nodes
 export function createBinaryTree(nodes) {
