@@ -24,12 +24,36 @@ export function getFirstEmptyNode(node) {
   return null; // return null
 }
 
-// Completely Traverses Left Tree, Prints root node, then Traverses Righ tree
-export function traverse(node, result = []) {
-  if (node === null || node.value === -1) return result;
-  result.push(...traverse(node.left));
-  result.push(node.value);
-  result.push(...traverse(node.right));
+function getOrder(orderType) {
+  if (typeof (orderType) === 'number' && orderType < 3 && orderType > -1)
+    return orderType;
+  if (typeof (orderType) === 'string') {
+    const ot = orderType.toLower();
+    switch (ot) {
+      case 'preorder':
+      case 'preordertraverse':
+        return 0;
+      default:
+      case 'inorder':
+      case 'inordertraverse':
+        return 1;
+      case 'postordertraverse':
+      case 'postorder':
+        return 2;
+    }
+  }
+  throw new Error('Invalid traversal type provided');
+}
+
+export function traverse(node, orderType = 1) {
+  const result = [];
+  if (node === null) return result;
+  const order = getOrder(orderType);
+  if (order === 0) result.push(node.value); // preOrderTraverse
+  result.push(...traverse(node.left, order));
+  if (order === 1) result.push(node.value); // inOrderTraverse
+  result.push(...traverse(node.right, order));
+  if (order === 2) result.push(node.value); // postOrderTraverse
   return result;
 }
 
