@@ -1,22 +1,27 @@
 // Search the Binary tree for the first Empty Node assuming null is an empty node and -1 terminates a tree
 export function getFirstEmptyNode(node) {
-  if (node.left === null && node.right === null) {
+  if (node.left === null && node.right === null && node.value > -1) {
     return node;
   }
   let l = node.left;
   let r = node.right;
-
+  let tgt = null;
   if (l.value > -1)
     l = getFirstEmptyNode(l);
-  if (l != null)
-    return l;
-
   if (r.value > -1)
     r = getFirstEmptyNode(r);
-  if (r != null)
-    return r;
 
-  return null;
+  const lValid = l != null && l.value > -1;
+  const rValid = r != null && r.value > -1;
+  if (lValid && rValid) {
+    tgt = l.depth <= r.depth ? l : r;
+    return tgt;
+  }
+  if (lValid)
+    return l;
+  if (rValid)
+    return r;
+  return null; // return null
 }
 
 // Completely Traverses Left Tree, Prints root node, then Traverses Righ tree
